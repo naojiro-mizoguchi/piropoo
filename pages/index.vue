@@ -2,12 +2,17 @@
   <section class="container">
     <div class="image01">
       <button @click="execClickAns('.unko')">
-        <img :src="img" class="imgStyle">
+        <div id="background" v-bind:style="img"></div>
       </button>
     </div>
     <div class="text01">
       <div id="answer" class="animated zoomInUp infinite unko">{{ ans }}</div>
     </div>
+    <footer id="footer">
+      <ul class="meta">
+        <li><span class="madeby" @click="reload()">もう一回</span></li>
+      </ul>
+    </footer>
   </section>
 </template>
 
@@ -33,7 +38,7 @@ export default {
     return {
       ans : response.answer,
       frc : response.forced,
-      img : response.image,
+      img : "opacity: 1; background-image: url(" + response.image + ");",
     }
   },
   methods: {
@@ -51,6 +56,9 @@ export default {
         const main = require('~/assets/js/main')
         main.clickAns(selector)
       }
+    },
+    reload() {
+      window.location.reload()
     }
   }
 }
@@ -81,18 +89,99 @@ button {
     border: 0px inset #0000;
 }
 
-.image01 .imgStyle {
-  width: 100vw;
-  height: 640px;
-  margin-top: 36px;
-  align-content: center;
-  object-fit: cover;
+#background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+@media (max-width: 600px) {
+  .text01 .unko {
+    font-size: 300%;
+    color: blue;
+    letter-spacing: 12px;
+  }
 }
 
-@media all and (max-width: 600px) {
-  .text01 .unko {
-    right: 20%;
-    font-size: 300%;
+@media screen and (max-width: 480px) {
+  #footer {
+    text-align: center;
+    padding: 8px 10px 14px;
   }
+}
+#footer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 24px;
+    padding: 14px 20px;
+    background-color: #0c0c0c;
+    background-color: rgba(12,12,12,0.6);
+}
+
+#footer .meta {
+    float: left;
+    color: white;
+    text-transform: uppercase;
+    font-family: "Avenir LT W01_95 Black1475556";
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    padding: 7px 6px;
+    margin: 0 6px 0;
+    list-style: none;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+@media screen and (max-width: 480px){
+  #footer .meta {
+    float: none;
+    margin-bottom: 10px;
+  }
+}
+#footer .meta li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+#footer a {
+    display: inline-block;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+a {
+    background: transparent;
+}
+*, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
 }
 </style>

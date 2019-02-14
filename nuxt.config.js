@@ -31,10 +31,10 @@ module.exports = {
   axios: {
   },
   manifest: {
-    name: 'nuxt-start',
+    name: 'ピロピロだよ！',
     lang: 'ja',
-    short_name: 'nuxt',
-    title: 'nuxt-startです',
+    short_name: 'ピロピロ',
+    title: 'ピロピロです',
     'og:title': 'nuxt-startです',
     description: 'nuxt-startです',
     'og:description': 'nuxt-startです',

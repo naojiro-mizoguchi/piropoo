@@ -25,10 +25,10 @@ export default {
       img: "",
     }
   },
-  mounted: async function() {
+  async fetch({app}, params) {
     const baseUrl = 'https://yesno.wtf/api';
     const getUrl = encodeURI(baseUrl);
-    const response = await this.$axios.$get(getUrl);
+    const response = await app.$axios.$get(getUrl);
 
     // console.log('response: ' + response.answer);
 
@@ -37,17 +37,17 @@ export default {
     } else {
       response.answer = 'イヤもん';
     }
+    /*
     this.ans = response.answer;
     this.frc = response.forced;
     this.img = "opacity: 1; background-image: url(" + response.image + ");";
-
-    /*
+    */
     return {
       ans : response.answer,
       frc : response.forced,
       img : "opacity: 1; background-image: url(" + response.image + ");",
     };
-    */
+  
   },
   methods: {
     execHideElement(selector) {

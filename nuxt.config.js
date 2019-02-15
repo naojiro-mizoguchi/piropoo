@@ -24,6 +24,8 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
 
+  mode: 'universal',
+
   modules: [
     '@nuxtjs/pwa',
     '@nuxtjs/axios',

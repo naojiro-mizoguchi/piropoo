@@ -85,7 +85,7 @@ export default {
   top: calc(100vh/3);
   right: 20%;
   align-content: center;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 600%;
   color: red;
   letter-spacing: 18px;
@@ -143,7 +143,7 @@ button {
     color: white;
     text-transform: uppercase;
     font-family: "Avenir LT W01_95 Black1475556";
-    font-size: 10px;
+    font-size: 16px;
     letter-spacing: 0.16em;
     line-height: 1;
     padding: 7px 6px;

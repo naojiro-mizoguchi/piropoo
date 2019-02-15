@@ -25,40 +25,48 @@ export default {
       img: "",
     }
   },
-  async asyncData({ app }) {
-    const baseUrl = 'https://yesno.wtf/api'
-    const getUrl = encodeURI(baseUrl)
-    const response = await app.$axios.$get(getUrl)
-    if (response.answer === 'yes') {
-      response.answer = 'よかばい'
-    } else {
-      response.answer = 'イヤもん'
-    }
+  mounted: async function() {
+    const baseUrl = 'https://yesno.wtf/api';
+    const getUrl = encodeURI(baseUrl);
+    const response = await this.$axios.$get(getUrl);
 
+  console.log('response: ' + response.answer);
+
+    if (response.answer === 'yes') {
+      response.answer = 'よかばい';
+    } else {
+      response.answer = 'イヤもん';
+    }
+    this.ans = response.answer;
+    this.frc = response.forced;
+    this.img = "opacity: 1; background-image: url(" + response.image + ");";
+
+    /*
     return {
       ans : response.answer,
       frc : response.forced,
       img : "opacity: 1; background-image: url(" + response.image + ");",
-    }
+    };
+    */
   },
   methods: {
     execHideElement(selector) {
       // jQuery はDOM操作のライブラリのため browser のみで動作させる
       if (process.browser) {
         // main.js を読み込む
-        const main = require('~/assets/js/main')
+        const main = require('~/assets/js/main');
         // main.js の hideElement(selector) を発火する
-        main.hideElement(selector)
+        main.hideElement(selector);
       }
     },
     execClickAns(selector){
       if (process.browser) {
         const main = require('~/assets/js/main')
-        main.clickAns(selector)
+        main.clickAns(selector);
       }
     },
     reload() {
-      window.location.reload()
+      window.location.reload();
     }
   }
 }
@@ -108,7 +116,7 @@ button {
 @media (max-width: 600px) {
   .text01 .unko {
     font-size: 300%;
-    color: blue;
+    color: red;
     letter-spacing: 12px;
   }
 }

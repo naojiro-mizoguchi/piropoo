@@ -39,7 +39,25 @@ module.exports = {
     description: 'nuxt-startです',
     'og:description': 'nuxt-startです',
     theme_color: '#ffffff',
-    background_color: '#ffffff'
+    background_color: '#ffffff',
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "static/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "static/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "static/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ]
   },
   workbox: {
     dev: true, //開発環境でもPWA

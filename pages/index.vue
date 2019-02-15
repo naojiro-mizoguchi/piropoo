@@ -30,7 +30,7 @@ export default {
     const getUrl = encodeURI(baseUrl);
     const response = await this.$axios.$get(getUrl);
 
-  console.log('response: ' + response.answer);
+    // console.log('response: ' + response.answer);
 
     if (response.answer === 'yes') {
       response.answer = 'よかばい';

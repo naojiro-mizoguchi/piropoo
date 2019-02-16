@@ -24,11 +24,11 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
 
-  mode: 'universal',
+  mode: 'spa',
 
   modules: [
     '@nuxtjs/pwa',
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   axios: {
   },
@@ -52,11 +52,6 @@ module.exports = {
       {
         src: 'static/android-chrome-512x512.png',
         sizes: '512x512',
-        type: 'image/png'
-      },
-      {
-        src: 'static/apple-touch-icon.png',
-        sizes: '180x180',
         type: 'image/png'
       }
     ]

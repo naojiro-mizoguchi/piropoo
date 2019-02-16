@@ -17,6 +17,8 @@
 </template>
 
 <script>
+const baseUrl = 'https://yesno.wtf/api';
+const getUrl = encodeURI(baseUrl);
 export default {
   data() {
     return {
@@ -25,29 +27,39 @@ export default {
       img: "",
     }
   },
-  async fetch({app}, params) {
-    const baseUrl = 'https://yesno.wtf/api';
-    const getUrl = encodeURI(baseUrl);
+  async asyncData({app}) {
+    // const baseUrl = 'https://yesno.wtf/api';
+    // const getUrl = encodeURI(baseUrl);
     const response = await app.$axios.$get(getUrl);
-
-    // console.log('response: ' + response.answer);
 
     if (response.answer === 'yes') {
       response.answer = 'よかばい';
     } else {
       response.answer = 'イヤもん';
     }
-    /*
-    this.ans = response.answer;
-    this.frc = response.forced;
-    this.img = "opacity: 1; background-image: url(" + response.image + ");";
-    */
+
     return {
       ans : response.answer,
       frc : response.forced,
-      img : "opacity: 1; background-image: url(" + response.image + ");",
+      img : "opacity: 1; background-image: url('" + response.image + "');",
     };
-  
+    
+  },
+  async fetch({app}) {
+    const response = await app.$axios.$get(getUrl);
+
+    if (response.answer === 'yes') {
+      response.answer = 'よかばい';
+    } else {
+      response.answer = 'イヤもん';
+    }
+
+    return {
+      ans : response.answer,
+      frc : response.forced,
+      img : "opacity: 1; background-image: url('" + response.image + "');",
+    };
+    
   },
   methods: {
     execHideElement(selector) {

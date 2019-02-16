@@ -29,8 +29,8 @@ export default {
       headers: {
         'Content-Type': 'application/json;charaset=UTF-8',
         'Access-Control-Allow-Origin': '*',
-      }
-    }
+      },
+    };
   },
   /*
   async asyncData({app}) {

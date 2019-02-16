@@ -24,17 +24,15 @@ export default {
     image() { return this.$store.state.image },
     answer() { return this.$store.state.answer }
   },
-  //computed: {
-  //  item() { return this.$store.state.items.items }
-  //},
-  /*
   data() {
     return {
-      ans: "",
-      frc: "",
-      img: "",
+      headers: {
+        'Content-Type': 'application/json;charaset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      }
     }
   },
+  /*
   async asyncData({app}) {
     // const baseUrl = 'https://yesno.wtf/api';
     // const getUrl = encodeURI(baseUrl);
@@ -57,7 +55,7 @@ export default {
   async fetch ({ app, store }) {
     const baseUrl = 'https://yesno.wtf/api';
     const getUrl = encodeURI(baseUrl);
-    const response = await app.$axios.$get(getUrl);
+    const response = await app.$axios.$get(getUrl, this.headers);
     // console.log('data0: ' + response.answer);
     await store.dispatch('getData', response);  
   },

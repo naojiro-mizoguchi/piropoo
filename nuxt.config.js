@@ -43,18 +43,6 @@ module.exports = {
     theme_color: '#ffffff',
     background_color: '#ffffff',
     start_url: '/',
-    icons: [
-      {
-        src: 'static/android-chrome-192x192.png',
-        sizes: '192x192',
-        type: 'image/png'
-      },
-      {
-        src: 'static/android-chrome-512x512.png',
-        sizes: '512x512',
-        type: 'image/png'
-      }
-    ]
   },
   workbox: {
     dev: true, //開発環境でもPWA

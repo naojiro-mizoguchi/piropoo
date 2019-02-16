@@ -2,11 +2,11 @@
   <section class="container">
     <div class="image01">
       <button @click="execClickAns('.unko')">
-        <div id="background" v-bind:style="this.$store.state.image"></div>
+        <div id="background" v-bind:style="image"></div>
       </button>
     </div>
     <div class="text01">
-      <div id="answer" class="animated zoomInUp infinite unko">{{this.$store.state.answer}}</div>
+      <div id="answer" class="animated zoomInUp infinite unko">{{answer}}</div>
     </div>
     <footer id="footer">
       <ul class="meta">
@@ -20,6 +20,10 @@
 import axios from 'axios'
 
 export default {
+  computed: {
+    image() { return this.$store.state.image },
+    answer() { return this.$store.state.answer }
+  },
   //computed: {
   //  item() { return this.$store.state.items.items }
   //},
@@ -54,7 +58,7 @@ export default {
     const baseUrl = 'https://yesno.wtf/api';
     const getUrl = encodeURI(baseUrl);
     const response = await app.$axios.$get(getUrl);
-    console.log('data0: ' + response.answer);
+    // console.log('data0: ' + response.answer);
     await store.dispatch('getData', response);  
   },
   methods: {

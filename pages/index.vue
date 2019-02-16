@@ -2,11 +2,11 @@
   <section class="container">
     <div class="image01">
       <button @click="execClickAns('.unko')">
-        <div id="background" v-bind:style="img"></div>
+        <div id="background" v-bind:style="this.$store.state.image"></div>
       </button>
     </div>
     <div class="text01">
-      <div id="answer" class="animated zoomInUp infinite unko">{{ ans }}</div>
+      <div id="answer" class="animated zoomInUp infinite unko">{{this.$store.state.answer}}</div>
     </div>
     <footer id="footer">
       <ul class="meta">
@@ -17,9 +17,13 @@
 </template>
 
 <script>
-const baseUrl = 'https://yesno.wtf/api';
-const getUrl = encodeURI(baseUrl);
+import axios from 'axios'
+
 export default {
+  //computed: {
+  //  item() { return this.$store.state.items.items }
+  //},
+  /*
   data() {
     return {
       ans: "",
@@ -45,21 +49,13 @@ export default {
     };
     
   },
-  async fetch({app}) {
+  */
+  async fetch ({ app, store }) {
+    const baseUrl = 'https://yesno.wtf/api';
+    const getUrl = encodeURI(baseUrl);
     const response = await app.$axios.$get(getUrl);
-
-    if (response.answer === 'yes') {
-      response.answer = 'よかばい';
-    } else {
-      response.answer = 'イヤもん';
-    }
-
-    return {
-      ans : response.answer,
-      frc : response.forced,
-      img : "opacity: 1; background-image: url('" + response.image + "');",
-    };
-    
+    console.log('data0: ' + response.answer);
+    await store.dispatch('getData', response);  
   },
   methods: {
     execHideElement(selector) {

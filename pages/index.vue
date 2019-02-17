@@ -10,29 +10,37 @@
     </div>
     <footer id="footer">
       <ul class="meta">
-        <li><span class="madeby" @click="reload()">もう一回</span></li>
+        <li><span class="madeby" @click="onClickReload()">もう一回</span></li>
       </ul>
     </footer>
   </section>
 </template>
 
 <script>
-import axios from 'axios'
+import axiosbase from 'axios'
+
+const axios = axiosbase.create({
+  baseURL: 'https://yesno.wtf',
+headers: {
+  'Content-Type': 'application/x-www-form-urlencoded'
+},
+  responseType: 'json',
+})
 
 export default {
   computed: {
     image() { return this.$store.state.image },
     answer() { return this.$store.state.answer }
   },
+  /*
   data() {
     return {
       headers: {
-        'Content-Type': 'application/json;charaset=UTF-8',
-        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "application/x-www-form-urlencoded;charaset=UTF-8",
+        "Access-Control-Allow-Origin": "*",
       },
     };
   },
-  /*
   async asyncData({app}) {
     // const baseUrl = 'https://yesno.wtf/api';
     // const getUrl = encodeURI(baseUrl);
@@ -55,9 +63,16 @@ export default {
   async fetch ({ app, store }) {
     const baseUrl = 'https://yesno.wtf/api';
     const getUrl = encodeURI(baseUrl);
-    const response = await app.$axios.$get(getUrl, this.headers);
-    // console.log('data0: ' + response.answer);
-    await store.dispatch('getData', response);  
+    /*
+    const headers = {
+        'Content-Type': 'application/json;charaset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+    };
+    */
+    const response = await axios.get(getUrl);
+    // console.log('data0: ' + response.data.answer);
+    // console.log('data0: ' + response.data.image);
+    store.dispatch('getData', response.data);  
   },
   methods: {
     execHideElement(selector) {
@@ -77,6 +92,14 @@ export default {
     },
     reload() {
       window.location.reload();
+    },
+    async onClickReload() {
+      const baseUrl = 'https://yesno.wtf/api';
+      const getUrl = encodeURI(baseUrl);
+      const response = await axios.get(getUrl);
+      console.log('data0: ' + response.data.answer);
+      console.log('data0: ' + response.data.image);
+      this.$store.dispatch('getData', response.data); 
     }
   }
 }

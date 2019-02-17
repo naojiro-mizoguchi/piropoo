@@ -24,7 +24,7 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
 
-  mode: 'spa',
+  mode: 'universal',
 
   modules: [
     '@nuxtjs/pwa',
